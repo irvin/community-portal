@@ -44,7 +44,9 @@
               foreach($fieldValues->featured_events as $featured_event):
                 $event = EM_Events::get(array('post_id' => $featured_event['single_event']->ID));
                 $event = $event[0];
-                include(locate_template('plugins/events-manager/templates/template-parts/single-event-card.php', false, false));
+                if (!empty($event)):
+                  include(locate_template('plugins/events-manager/templates/template-parts/single-event-card.php', false, false));
+                endif;
               endforeach;
             ?>
             <div class="col-lg-4 col-md-6 events__column homepage__events__count">

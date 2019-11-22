@@ -1109,9 +1109,10 @@ function mozilla_verify_deleted_events() {
   foreach($allPosts->posts as $post):
     $event = EM_Events::get(array('post_id' => $post->ID));
     if (count($event) === 0):
-      wp_delete_post($post->ID);
+      wp_delete_post($post->ID, true);
     endif;
   endforeach;
+  wp_reset_query();
 }
 
 add_action('init', 'mozilla_verify_deleted_events', 10)
